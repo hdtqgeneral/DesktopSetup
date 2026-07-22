@@ -4,15 +4,15 @@
     "type": "file",
     "source": "C:/Users/%USERPROFILE%/.config/fastfetch/ascii.txt",
     "color": {
-      "1": "#F5E0DC",
-      "2": "#F2CDCD",
-      "3": "#F5C2E7",
-      "4": "#FAB387",
-      "5": "#F9E2AF",
-      "6": "#A6E3A1",
-      "7": "#94E2D5",
-      "8": "#89DCEB",
-      "9": "#74C7EC"
+      "1": "#f2d5cf",
+      "2": "#eebebe",
+      "3": "#f4b8e4",
+      "4": "#ef9f76",
+      "5": "#e5c890",
+      "6": "#a6d189",
+      "7": "#81c8be",
+      "8": "#99d1db",
+      "9": "#85c1dc"
     },
     "padding": {
       "top": 1,
@@ -21,59 +21,66 @@
     }
   },
   "display": {
-    "separator": " "
+    "separator": " ",
+    "percent": {
+      "type": ["bar", "num-color"],
+      "color": {
+        "green": "#a6d189",
+        "yellow": "#e5c890",
+        "red": "#e78284"
+      }
+    }
   },
   "modules": [
     "break",
     {
       "type": "title",
       "color": {
-        "user": "#F5C2E7",
-        "at": "#CDD6F4",
-        "host": "#89DCEB"
+        "user": "#f4b8e4",
+        "at": "#c6d0f5",
+        "host": "#99d1db"
       }
     },
     "break",
      {
       "type": "os",
-      "key": "",
-      "keyColor": "#89DCEB"
+      "key": "",
+      "keyColor": "#99d1db"
     },
     {
       "type": "cpu",
-      "key": "",
-      "keyColor": "#F5C2E7"
+      "key": "",
+      "keyColor": "#f4b8e4"
     },
     {
       "type": "board",
       "key": "󰚗",
-      "keyColor": "#FAB387"
+      "keyColor": "#ef9f76"
     },
     {
       "type": "memory",
-      "key": "",
-      "keyColor": "#A6E3A1",
-      "format": "{used} / {total} ({percentage})"
+      "key": "",
+      "keyColor": "#a6d189"
     },
     {
       "type": "disk",
-      "key": "",
-      "keyColor": "#94E2D5"
+      "key": "",
+      "keyColor": "#81c8be"
     },
     {
       "type": "uptime",
       "key": "󰒲",
-      "keyColor": "#F9E2AF"
+      "keyColor": "#e5c890"
     },
     {
       "type": "gpu",
-      "key": "",
-      "keyColor": "#F38BA8"
+      "key": "",
+      "keyColor": "#e78284"
     },
     "break",
     {
       "type": "colors",
-      "symbol": "circle"
+      "symbol": "square"
     }
   ]
 }
