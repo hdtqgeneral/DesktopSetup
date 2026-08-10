@@ -1,0 +1,20 @@
+onboarding = false
+
+[ui]
+agent_panel_scope = "all"
+
+[theme]
+name = "rose-pine"
+
+[keys]
+prefix = "ctrl+space"
+settings = "prefix+shift+s"
+resize_mode = "prefix+shift+r"
+split_vertical = "prefix+v"
+split_horizontal = "prefix+s"
+new_tab = "prefix+t"
+reload_config = "prefix+r"
+focus_pane_left = "prefix+h"
+focus_pane_down = "prefix+j"
+focus_pane_up = "prefix+k"
+focus_pane_right = "prefix+l"
