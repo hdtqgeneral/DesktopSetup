@@ -1,0 +1,81 @@
+[mgr]
+linemode = "size"
+
+[opener]
+edit = [
+    { run = 'code "$@"', orphan = true, desc = "VS Code" }
+]
+
+# ─────────────────────────────────────────────────────────────────────────────
+# Plugins
+#
+# Rules are matched top-down and the FIRST match wins, so order matters.
+# Preloader and previewer rules must mirror each other exactly — same matcher,
+# same arguments — or the cached data and the rendered preview disagree.
+# ─────────────────────────────────────────────────────────────────────────────
+[plugin]
+
+# --- Fetchers ----------------------------------------------------------------
+prepend_fetchers = [
+    # Recursive directory sizes, so the `size` linemode shows total bytes
+    # instead of a child count. Local plugin: plugins/dirsize.yazi
+    { url = "*/", run = "dirsize", prio = "low", group = "dirsize" },
+]
+
+# --- Preloaders --------------------------------------------------------------
+prepend_preloaders = [
+    # Office documents -> office.yazi
+    # Requires `libreoffice` and `pdftoppm` on PATH.
+    { mime = "application/vnd.openxmlformats-officedocument.*", run = "office" },
+    { mime = "application/vnd.oasis.opendocument.*", run = "office" },
+    { mime = "application/vnd.ms-*", run = "office" },
+    { mime = "application/msword", run = "office" },
+    # Fallback for documents sniffed as a bare zip archive
+    { url = "*.{docx,xlsx,pptx,odt,ods,odp}", run = "office" },
+
+    # Audio / video / images -> mediainfo.yazi, replacing the built-in
+    # magick, image and video handlers.
+    { mime = "{audio,video,image}/*", run = "mediainfo" },
+
+    # Subtitles, PostScript and Adobe formats -> mediainfo.yazi
+    { mime = "application/{subrip,postscript,illustrator,dvb.ait,vnd.adobe.illustrator,eps}", run = "mediainfo" },
+
+    # .ai files are sometimes sniffed as "application/pdf", so match the
+    # extension as well.
+    { url = "*.{ai,eps,ait}", run = "mediainfo" },
+]
+
+# --- Previewers --------------------------------------------------------------
+prepend_previewers = [
+    # Office documents -> office.yazi
+    { mime = "application/vnd.openxmlformats-officedocument.*", run = "office" },
+    { mime = "application/vnd.oasis.opendocument.*", run = "office" },
+    { mime = "application/vnd.ms-*", run = "office" },
+    { mime = "application/msword", run = "office" },
+    # Fallback for documents sniffed as a bare zip archive
+    { url = "*.{docx,xlsx,pptx,odt,ods,odp}", run = "office" },
+
+    # Audio / video / images -> mediainfo.yazi
+    { mime = "{audio,video,image}/*", run = "mediainfo" },
+
+    # Subtitles, PostScript and Adobe formats -> mediainfo.yazi
+    { mime = "application/{subrip,postscript,illustrator,dvb.ait,vnd.adobe.illustrator,eps}", run = "mediainfo" },
+
+    # .ai files are sometimes sniffed as "application/pdf", so match the
+    # extension as well.
+    { url = "*.{ai,eps,ait}", run = "mediainfo" },
+]
+
+# mediainfo.yazi accepts `--no-metadata` and `--no-preview` to drop half of its
+# output; passing both renders nothing. To use them, narrow the
+# `{audio,video,image}/*` rule above (a broader rule earlier in the list will
+# always shadow a narrower one below it) and apply the same flags in BOTH the
+# preloader and previewer lists.
+#
+# More supported formats: https://mediaarea.net/en/MediaInfo/Support/Formats
+# Issues: https://github.com/boydaihungst/mediainfo.yazi/issues
+
+# Adobe Illustrator/Photoshop files can exceed the default image memory budget
+# and render as blank. https://yazi-rs.github.io/docs/configuration/yazi#tasks
+[tasks]
+image_alloc = 1073741824    # 1024 * 1024 * 1024 = 1 GiB

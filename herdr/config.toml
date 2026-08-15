@@ -15,3 +15,13 @@ focus_pane_left = "prefix+h"
 focus_pane_down = "prefix+j"
 focus_pane_up = "prefix+k"
 focus_pane_right = "prefix+l"
+workspace_picker = "prefix+w"
+new_workspace = "prefix+shift+n"
+rename_workspace = "prefix+shift+w"
+close_workspace = "prefix+shift+d"
+previous_workspace = "prefix+shift+k"
+next_workspace = "prefix+shift+j"
+switch_workspace = "prefix+shift+1..9"
+
+[experimental]
+kitty_graphics = true

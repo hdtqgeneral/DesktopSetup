@@ -1,0 +1,9 @@
+[[mgr.prepend_keymap]]
+on   = "C"
+run  = 'shell --block -- set -- %s; [ -n "$1" ] || set -- %h; [ -n "$1" ] && zip -r "${1##*/}.zip" "$@"'
+desc = "Zip selected/hovered file or folder"
+
+[[mgr.prepend_keymap]]
+on   = "X"
+run  = 'shell --block -- set -- %h; [ -n "$1" ] || exit; d="${1##*/}"; d="${d%.*}"; d="${d%.tar}"; mkdir -p "$d" && { bsdtar -xf "$1" -C "$d" || 7zz x -o"$d" -- "$1"; }'
+desc = "Extract hovered archive into a folder"
